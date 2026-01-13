@@ -1,0 +1,414 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+
+% Configuración de márgenes
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% Configuración de colores
+\definecolor{theoremcolor}{RGB}{230, 240, 255}
+\definecolor{exercisecolor}{RGB}{255, 250, 230}
+\definecolor{proofcolor}{RGB}{245, 255, 245}
+
+% Definición de entornos personalizados
+
+% Entorno para Teoremas
+\tcolorboxenvironment{theorem}{
+	enhanced,
+	colback=theoremcolor,
+	boxrule=0.5pt,
+	colframe=blue!50!black,
+	arc=3pt,
+	breakable,
+	before skip=12pt,
+	after skip=12pt,
+	left=8pt,
+	right=8pt,
+	top=4pt,
+	bottom=4pt,
+	fontupper=\normalfont
+}
+
+% Entorno para Proposiciones
+\tcolorboxenvironment{proposition}{
+	enhanced,
+	colback=theoremcolor,
+	boxrule=0.5pt,
+	colframe=green!50!black,
+	arc=3pt,
+	breakable,
+	before skip=12pt,
+	after skip=12pt,
+	left=8pt,
+	right=8pt,
+	top=4pt,
+	bottom=4pt,
+	fontupper=\normalfont
+}
+
+% Entorno para Lemas
+\tcolorboxenvironment{lemma}{
+	enhanced,
+	colback=theoremcolor,
+	boxrule=0.5pt,
+	colframe=orange!50!black,
+	arc=3pt,
+	breakable,
+	before skip=12pt,
+	after skip=12pt,
+	left=8pt,
+	right=8pt,
+	top=4pt,
+	bottom=4pt,
+	fontupper=\normalfont
+}
+
+% Entorno para Corolarios
+\tcolorboxenvironment{corollary}{
+	enhanced,
+	colback=theoremcolor,
+	boxrule=0.5pt,
+	colframe=purple!50!black,
+	arc=3pt,
+	breakable,
+	before skip=12pt,
+	after skip=12pt,
+	left=8pt,
+	right=8pt,
+	top=4pt,
+	bottom=4pt,
+	fontupper=\normalfont
+}
+
+% Entorno para Definiciones
+\tcolorboxenvironment{definition}{
+	enhanced,
+	colback=yellow!5,
+	boxrule=0.5pt,
+	colframe=yellow!50!black,
+	arc=3pt,
+	breakable,
+	before skip=12pt,
+	after skip=12pt,
+	left=8pt,
+	right=8pt,
+	top=4pt,
+	bottom=4pt,
+	fontupper=\normalfont
+}
+
+% Entorno para Ejercicios
+\newenvironment{exercise}[1][]
+{
+	\begin{tcolorbox}[
+		enhanced,
+		colback=exercisecolor,
+		boxrule=0.5pt,
+		colframe=red!50!black,
+		arc=3pt,
+		breakable,
+		before skip=12pt,
+		after skip=12pt,
+		left=8pt,
+		right=8pt,
+		top=4pt,
+		bottom=4pt,
+		title=\textbf{Ejercicio~\ifx&#1&%
+			\theexercise%
+			\else%
+			#1%
+			\fi},
+		fonttitle=\bfseries,
+		fontupper=\normalfont
+		]
+	}
+	{
+	\end{tcolorbox}
+}
+
+% Entorno para Ejemplos
+\newenvironment{example}[1][]
+{
+	\begin{tcolorbox}[
+		enhanced,
+		colback=exercisecolor,
+		boxrule=0.5pt,
+		colframe=brown!50!black,
+		arc=3pt,
+		breakable,
+		before skip=12pt,
+		after skip=12pt,
+		left=8pt,
+		right=8pt,
+		top=4pt,
+		bottom=4pt,
+		title=\textbf{Ejemplo~\ifx&#1&%
+			\theexample%
+			\else%
+			#1%
+			\fi},
+		fonttitle=\bfseries,
+		fontupper=\normalfont
+		]
+	}
+	{
+	\end{tcolorbox}
+}
+
+% Entorno para demostraciones (estilo caja)
+\newenvironment{myproof}[1][Demostración]
+{
+	\begin{tcolorbox}[
+		enhanced,
+		colback=proofcolor,
+		boxrule=0.5pt,
+		colframe=gray!50!black,
+		arc=3pt,
+		breakable,
+		before skip=12pt,
+		after skip=12pt,
+		left=8pt,
+		right=8pt,
+		top=4pt,
+		bottom=4pt,
+		title=\textbf{#1},
+		fonttitle=\bfseries,
+		fontupper=\normalfont
+		]
+		\renewcommand{\qedsymbol}{$\blacksquare$}
+	}
+	{
+		\hfill$\blacksquare$
+	\end{tcolorbox}
+}
+
+% Contadores
+\newcounter{theorem}
+\newcounter{proposition}
+\newcounter{lemma}
+\newcounter{corollary}
+\newcounter{definition}
+\newcounter{exercise}
+\newcounter{example}
+
+% Comandos para comenzar cada entorno
+\theoremstyle{plain}
+\newtheorem{theoreminner}{Teorema}[section]
+\newtheorem{propositioninner}{Proposición}[section]
+\newtheorem{lemmainner}{Lema}[section]
+\newtheorem{corollaryinner}{Corolario}[section]
+
+\theoremstyle{definition}
+\newtheorem{definitioninner}{Definición}[section]
+
+% Redefinir entornos para usar las cajas
+\newenvironment{theorem}[1][]
+{\refstepcounter{theorem}\begin{theoreminner}[#1]\hspace{-0.5em}}
+	{\end{theoreminner}}
+
+\newenvironment{proposition}[1][]
+{\refstepcounter{proposition}\begin{propositioninner}[#1]\hspace{-0.5em}}
+	{\end{propositioninner}}
+
+\newenvironment{lemma}[1][]
+{\refstepcounter{lemma}\begin{lemmainner}[#1]\hspace{-0.5em}}
+	{\end{lemmainner}}
+
+\newenvironment{corollary}[1][]
+{\refstepcounter{corollary}\begin{corollaryinner}[#1]\hspace{-0.5em}}
+	{\end{corollaryinner}}
+
+\newenvironment{definition}[1][]
+{\refstepcounter{definition}\begin{definitioninner}[#1]\hspace{-0.5em}}
+	{\end{definitioninner}}
+
+% Comando para resaltar texto importante
+\newcommand{\highlight}[1]{\textbf{\textcolor{blue}{#1}}}
+
+% Configuración de hipervínculos
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=cyan,
+	pdftitle={Material Didáctico de Matemáticas},
+	pdfauthor={Tu Nombre}
+}
+
+% Título y autor
+\title{\textbf{Material Didáctico de Matemáticas}}
+\author{Profesor: Tu Nombre}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\tableofcontents
+	
+	\newpage
+	
+	\section{Introducción a la Lógica Matemática}
+	
+	\subsection{Conceptos Básicos}
+	
+	\begin{definition}
+		Una \highlight{proposición} es una oración declarativa que es verdadera o falsa, pero no ambas.
+	\end{definition}
+	
+	\begin{example}[Proposiciones]
+		\begin{enumerate}[label=\alph*)]
+			\item "2 + 2 = 4" es una proposición verdadera.
+			\item "La Tierra es plana" es una proposición falsa.
+			\item "¿Qué hora es?" no es una proposición.
+		\end{enumerate}
+	\end{example}
+	
+	\subsection{Teoremas Fundamentales}
+	
+	\begin{theorem}[Teorema de Pitágoras]
+		En un triángulo rectángulo, el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos. Es decir, si $a$ y $b$ son las longitudes de los catetos y $c$ es la longitud de la hipotenusa, entonces:
+		\[
+		c^2 = a^2 + b^2
+		\]
+	\end{theorem}
+	
+	\begin{myproof}
+		Consideremos un triángulo rectángulo con catetos $a$ y $b$, e hipotenusa $c$. Construyamos un cuadrado de lado $(a+b)$ y coloquemos cuatro triángulos idénticos dentro de él.
+		
+		El área del cuadrado grande es $(a+b)^2$. Esta área también puede calcularse como la suma del área del cuadrado pequeño (de lado $c$) más el área de los cuatro triángulos:
+		
+		\[
+		(a+b)^2 = c^2 + 4\left(\frac{ab}{2}\right)
+		\]
+		
+		Desarrollando:
+		\[
+		a^2 + 2ab + b^2 = c^2 + 2ab
+		\]
+		
+		Simplificando:
+		\[
+		a^2 + b^2 = c^2
+		\]
+		
+		Lo que completa la demostración.
+	\end{myproof}
+	
+	\begin{corollary}
+		En un triángulo rectángulo isósceles, donde $a = b$, la hipotenusa es $c = a\sqrt{2}$.
+	\end{corollary}
+	
+	\begin{myproof}
+		Si $a = b$, entonces por el Teorema de Pitágoras:
+		\[
+		c^2 = a^2 + a^2 = 2a^2
+		\]
+		Por lo tanto, $c = a\sqrt{2}$.
+	\end{myproof}
+	
+	\subsection{Ejercicios Prácticos}
+	
+	\begin{exercise}[Aplicación del Teorema de Pitágoras]
+		Un triángulo rectángulo tiene catetos de longitudes 3 cm y 4 cm. Calcula la longitud de la hipotenusa.
+	\end{exercise}
+	
+	\textbf{Solución:} Aplicando el Teorema de Pitágoras:
+	\[
+	c^2 = 3^2 + 4^2 = 9 + 16 = 25 \Rightarrow c = 5 \text{ cm}
+	\]
+	
+	\begin{exercise}[Problema inverso]
+		Si la hipotenusa de un triángulo rectángulo mide 13 cm y uno de sus catetos mide 5 cm, ¿cuánto mide el otro cateto?
+	\end{exercise}
+	
+	\begin{exercise}[Demostración]
+		Demuestra que en cualquier triángulo rectángulo, la altura correspondiente a la hipotenusa divide al triángulo en dos triángulos semejantes al triángulo original.
+	\end{exercise}
+	
+	\section{Álgebra Lineal}
+	
+	\subsection{Espacios Vectoriales}
+	
+	\begin{definition}[Espacio Vectorial]
+		Un \highlight{espacio vectorial} sobre un campo $\mathbb{K}$ es un conjunto $V$ no vacío, dotado de dos operaciones:
+		\begin{enumerate}[label=\roman*)]
+			\item Suma vectorial: $+: V \times V \rightarrow V$
+			\item Multiplicación por escalar: $\cdot: \mathbb{K} \times V \rightarrow V$
+		\end{enumerate}
+		que satisfacen los ocho axiomas de espacio vectorial.
+	\end{definition}
+	
+	\begin{lemma}[Unicidad del vector nulo]
+		En un espacio vectorial $V$, el vector nero es único.
+	\end{lemma}
+	
+	\begin{myproof}
+		Supongamos que existen dos vectores nulos $0_1$ y $0_2$ en $V$. Entonces:
+		\begin{align*}
+			0_1 &= 0_1 + 0_2 \quad \text{(porque } 0_2 \text{ es vector nulo)} \\
+			&= 0_2 + 0_1 \quad \text{(por conmutatividad)} \\
+			&= 0_2 \quad \text{(porque } 0_1 \text{ es vector nulo)}
+		\end{align*}
+		Por lo tanto, $0_1 = 0_2$.
+	\end{myproof}
+	
+	\begin{proposition}[Propiedades de espacios vectoriales]
+		En un espacio vectorial $V$ sobre $\mathbb{K}$, para todo $\alpha \in \mathbb{K}$ y todo $v \in V$:
+		\begin{enumerate}[label=\alph*)]
+			\item $0 \cdot v = 0$
+			\item $\alpha \cdot 0 = 0$
+			\item $(-1) \cdot v = -v$
+		\end{enumerate}
+	\end{proposition}
+	
+	\subsection{Ejercicios de Álgebra Lineal}
+	
+	\begin{exercise}[Comprobación de axiomas]
+		Verifica si los siguientes conjuntos son espacios vectoriales sobre $\mathbb{R}$:
+		\begin{enumerate}[label=\alph*)]
+			\item $\mathbb{R}^2$ con las operaciones usuales
+			\item El conjunto de matrices $2\times 2$ con entradas reales
+			\item El conjunto de polinomios de grado menor o igual a 3
+		\end{enumerate}
+	\end{exercise}
+	
+	\begin{exercise}[Dependencia lineal]
+		Determina si los siguientes vectores de $\mathbb{R}^3$ son linealmente independientes:
+		\[
+		v_1 = (1,2,3), \quad v_2 = (4,5,6), \quad v_3 = (7,8,9)
+		\]
+	\end{exercise}
+	
+	\section{Soluciones a Ejercicios Seleccionados}
+	
+	\subsection{Solución Ejercicio 2}
+	Dado que $c = 13$ cm y $a = 5$ cm, aplicamos el Teorema de Pitágoras:
+	\[
+	b^2 = c^2 - a^2 = 169 - 25 = 144 \Rightarrow b = 12 \text{ cm}
+	\]
+	
+	\subsection{Solución Ejercicio 4}
+	Para $\mathbb{R}^2$:
+	\begin{itemize}
+		\item La suma de vectores es conmutativa y asociativa
+		\item Existe vector nulo: $(0,0)$
+		\item Todo vector tiene inverso aditivo
+		\item La multiplicación por escalar distribuye
+	\end{itemize}
+	Por lo tanto, $\mathbb{R}^2$ sí es espacio vectorial sobre $\mathbb{R}$.
+	
+	\vspace{1cm}
+	\begin{center}
+		\textbf{¡Fin del material!}
+	\end{center}
+	
+\end{document}\\
