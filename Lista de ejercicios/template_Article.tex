@@ -9,6 +9,8 @@
 \usepackage{enumitem}
 \usepackage{tcolorbox}
 \usepackage{hyperref}
+%\usepackage{biblatex}
+%\addbibresource{reference.bib}
 
 % Configuración de márgenes
 \geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
@@ -244,8 +246,8 @@
 }
 
 % Título y autor
-\title{\textbf{Material Didáctico de Matemáticas}}
-\author{Profesor: Tu Nombre}
+\title{\textbf{Lista de ejercicios}}
+\author{Profesor: Matihus A. Molina Larios}
 \date{\today}
 
 \begin{document}
@@ -256,11 +258,11 @@
 	
 	\newpage
 	
-	\section{Introducción a la Lógica Matemática}
+	\section{Lógica}
 	
 	\subsection{Conceptos Básicos}
 	
-	\begin{definition}
+	\begin{definition}[Proposición]
 		Una \highlight{proposición} es una oración declarativa que es verdadera o falsa, pero no ambas.
 	\end{definition}
 	
@@ -272,50 +274,93 @@
 		\end{enumerate}
 	\end{example}
 	
-	\subsection{Teoremas Fundamentales}
+	\begin{definition}[Conectores lógicos]
+		\begin{itemize}
+			\item Negación \(\neg p\)
+			\item Conjunción \(p \land q\) (``y'')
+			\item Disyunción \(p \lor q\) (``o'' inclusiva)
+			\item Disyunción exclusiva \(p \lor q\) (``o \ldots o \ldots'')
+			\item Condicional \(p \to q\) (``si \ldots entonces \ldots'')
+			\item Bicondicional \(p \leftrightarrow q\) (``si y solo si'')
+		\end{itemize}
+	\end{definition}
 	
-	\begin{theorem}[Teorema de Pitágoras]
-		En un triángulo rectángulo, el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos. Es decir, si $a$ y $b$ son las longitudes de los catetos y $c$ es la longitud de la hipotenusa, entonces:
-		\[
-		c^2 = a^2 + b^2
-		\]
-	\end{theorem}
+	\begin{definition}[Proposiciones relacionadas a la condicional]
+		\begin{itemize}
+			\item Recíproca: \(q \to p\)
+			\item Inversa: \(\neg p \to \neg q\)
+			\item Contrapositiva: \(\neg q \to \neg p\)
+		\end{itemize}
+	\end{definition}
 	
-	\begin{myproof}
-		Consideremos un triángulo rectángulo con catetos $a$ y $b$, e hipotenusa $c$. Construyamos un cuadrado de lado $(a+b)$ y coloquemos cuatro triángulos idénticos dentro de él.
-		
-		El área del cuadrado grande es $(a+b)^2$. Esta área también puede calcularse como la suma del área del cuadrado pequeño (de lado $c$) más el área de los cuatro triángulos:
-		
-		\[
-		(a+b)^2 = c^2 + 4\left(\frac{ab}{2}\right)
-		\]
-		
-		Desarrollando:
-		\[
-		a^2 + 2ab + b^2 = c^2 + 2ab
-		\]
-		
-		Simplificando:
-		\[
-		a^2 + b^2 = c^2
-		\]
-		
-		Lo que completa la demostración.
-	\end{myproof}
+	\begin{definition}[XD]
+		\begin{itemize}
+			\item \textbf{Tautología}: Proposición siempre verdadera.
+			
+			\item \textbf{Contradicción}: Proposición siempre falsa.
+			
+			\item \textbf{Equivalencia lógica} \(P \equiv Q\): Misma tabla de verdad.
+		\end{itemize}
+	\end{definition}
 	
-	\begin{corollary}
-		En un triángulo rectángulo isósceles, donde $a = b$, la hipotenusa es $c = a\sqrt{2}$.
-	\end{corollary}
-	
-	\begin{myproof}
-		Si $a = b$, entonces por el Teorema de Pitágoras:
+	\begin{definition}[Leyes de De Morgan]
 		\[
-		c^2 = a^2 + a^2 = 2a^2
+		\neg(p \lor q) \equiv \neg p \land \neg q \quad \text{y} \quad \neg(p \land q) \equiv \neg p \lor \neg q
 		\]
-		Por lo tanto, $c = a\sqrt{2}$.
-	\end{myproof}
+	\end{definition}
 	
-	\subsection{Ejercicios Prácticos}
+	\begin{definition}[Cuantificadores]
+		\begin{itemize}
+			\item Universal \(\forall\) (``para todo'')
+			\item Existencial \(\exists\) (``existe al menos uno'')
+			\item Existencial único \(\exists!\) (``existe solo uno'')
+		\end{itemize}
+	\end{definition}
+	
+	%	\subsection{Teoremas Fundamentales}
+	%	
+	%	\begin{theorem}[Teorema de Pitágoras]
+		%		En un triángulo rectángulo, el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos. Es decir, si $a$ y $b$ son las longitudes de los catetos y $c$ es la longitud de la hipotenusa, entonces:
+		%		\[
+		%		c^2 = a^2 + b^2
+		%		\]
+		%	\end{theorem}
+	%	
+	%	\begin{myproof}
+		%		Consideremos un triángulo rectángulo con catetos $a$ y $b$, e hipotenusa $c$. Construyamos un cuadrado de lado $(a+b)$ y coloquemos cuatro triángulos idénticos dentro de él.
+		%		
+		%		El área del cuadrado grande es $(a+b)^2$. Esta área también puede calcularse como la suma del área del cuadrado pequeño (de lado $c$) más el área de los cuatro triángulos:
+		%		
+		%		\[
+		%		(a+b)^2 = c^2 + 4\left(\frac{ab}{2}\right)
+		%		\]
+		%		
+		%		Desarrollando:
+		%		\[
+		%		a^2 + 2ab + b^2 = c^2 + 2ab
+		%		\]
+		%		
+		%		Simplificando:
+		%		\[
+		%		a^2 + b^2 = c^2
+		%		\]
+		%		
+		%		Lo que completa la demostración.
+		%	\end{myproof}
+	%	
+	%	\begin{corollary}
+		%		En un triángulo rectángulo isósceles, donde $a = b$, la hipotenusa es $c = a\sqrt{2}$.
+		%	\end{corollary}
+	%	
+	%	\begin{myproof}
+		%		Si $a = b$, entonces por el Teorema de Pitágoras:
+		%		\[
+		%		c^2 = a^2 + a^2 = 2a^2
+		%		\]
+		%		Por lo tanto, $c = a\sqrt{2}$.
+		%	\end{myproof}
+	
+	\subsection{Ejemplos Interesantes}
 	
 	\begin{exercise}[Aplicación del Teorema de Pitágoras]
 		Un triángulo rectángulo tiene catetos de longitudes 3 cm y 4 cm. Calcula la longitud de la hipotenusa.
@@ -333,6 +378,8 @@
 	\begin{exercise}[Demostración]
 		Demuestra que en cualquier triángulo rectángulo, la altura correspondiente a la hipotenusa divide al triángulo en dos triángulos semejantes al triángulo original.
 	\end{exercise}
+	
+	\subsection{Ejercicios Prácticos}
 	
 	\section{Álgebra Lineal}
 	
@@ -410,5 +457,7 @@
 	\begin{center}
 		\textbf{¡Fin del material!}
 	\end{center}
+	
+	%\printbibliography[heading=bibintoc]
 	
 \end{document}\\
